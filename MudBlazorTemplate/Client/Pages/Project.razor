@@ -1,0 +1,74 @@
+﻿@page "/project"
+
+<style>
+    .itme-hover-color {
+        transition: transform 0.5s, box-shadow 0.5s;
+    }
+
+    .itme-hover-color:hover {
+        cursor: pointer;
+        transform: translateY(-10px);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        opacity: 0.85;
+    }
+
+    .itme-hover-color:hover .tool-box {
+        transition: transform 0.5s;
+        visibility: visible;
+    }
+
+    .tool-box {
+        visibility: hidden;
+    }
+</style>
+
+<PageTitle>Project</PageTitle>
+
+<MudContainer Class="mt-8" MaxWidth="MaxWidth.False">
+    <MudText Typo="Typo.h4" Align="Align.Center" GutterBottom="true">项目列表</MudText>
+    <MudText Align="Align.Center">点击下方的卡片，查看正在进行中的项目，或者添加新项目。</MudText>
+
+    <div class="d-flex justify-start flex-grow-1 gap-4 flex-wrap mt-8">
+        @for (int x = 1; x<5; x++)
+        {
+            <MudPaper Elevation="0" Width="350px" Class="itme-hover-color">
+                <MudCard>
+                    <MudCardMedia Image="/icon-512.png" Height="200" />
+                    <MudCardActions Class="d-flex justify-space-between align-center">
+                        <MudButton Variant="Variant.Text" Color="Color.Primary">项目名称</MudButton>
+                        <div class="tool-box">
+                            <MudTooltip>
+                                <ChildContent>
+                                    <MudIcon Icon="@Icons.Material.Outlined.Circle" />
+                                </ChildContent>
+                                <TooltipContent>
+                                    <MudText Typo="Typo.h6">h6 title</MudText>
+                                    <MudText Typo="Typo.body2">body2 content</MudText>
+                                    <MudIconButton Icon="@Icons.Material.Filled.Delete" />
+                                </TooltipContent>
+                            </MudTooltip>
+                        </div>
+                    </MudCardActions>
+                </MudCard>
+            </MudPaper>
+        }
+        <MudPaper Elevation="0" Width="350px" Class="itme-hover-color">
+            <MudCard>
+                <MudCardMedia Height="200" />
+                <MudCardActions Class="d-flex justify-space-between align-center">
+                    <MudButton Variant="Variant.Text" Color="Color.Primary">创建项目</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudPaper>
+    </div>
+
+</MudContainer>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
